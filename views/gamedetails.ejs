@@ -1,0 +1,59 @@
+<%- include('partials/head')%>
+
+<%- include('partials/navbar')%>
+
+<body>
+  <main>
+    <section>
+    <div class="container bg-light">
+        <div class="row">
+            
+            <div class="column">
+                <h1>Game name : <%= data.title %> </h1>
+                <img src="<%=data.image%>" width="400px" height="200px">
+                <button><a href="/game/edit/<%=data._id%>">Edit!</a></button> 
+                <br>
+                <br>
+                <ul>
+                    <li> Game score : <%= data.score %></li><br>
+                    <li> Release year: <%= data.year %></li><br>
+                    <li> Age rating : <%= data.rating %></li><br>
+                    <li> Description : <%= data.summary %></li><br>
+                </ul>     
+
+                <h1>Add a comment! </h1>
+                <form action="/game/<%=data._id%>?_method=PUT" method="POST">
+                    <label for="uname">Username</label>
+                    <input type="text" id="uname" name="user" placeholder="username">
+                    <br>
+                    <label for="comment">Comment</label>
+                    <input type="text" id="comment" name="comment" placeholder="comment">
+                    <br>
+                    <button>SUBMIT</button>
+                </form>
+                <h1>All comments! </h1>
+                <ul>
+                <% let i = 0; %>
+                <% for(let comment of data.comments) { %> 
+                    <li>
+                        <form action="/game/deletecomment?_method=PUT" method="POST">
+                            User : <%=comment[0]%> <br> Post : <%= comment[1]%> 
+                            <input type="hidden" name="commentID" value="<%= i %>">
+                            <input type="hidden" name="gameID" value="<%= data._id %>">
+                            <button>Delete</button> 
+                        </form>
+                    </li>
+                    <br>
+                    <br>
+                    <br>
+                <% i++; %>
+                <% } %>
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+        </section>
+        </main>
+</body>
+<%- include('partials/footer')%>

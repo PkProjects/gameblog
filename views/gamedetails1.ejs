@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= data.title %> </title>
+</head>
+<body>
+    <h1>Game name : <%= data.title %> </h1>
+    <img src="<%=data.image%>" width="400px" height="200px">
+    <ul>
+        <li> Game score : <%= data.score %></li>
+        <li> Release year: <%= data.year %></li>
+        <li> Age rating : <%= data.rating %></li>
+        <li> Description : <%= data.summary %></li>
+    </ul>
+
+    <form action="/game/<%=data._id%>?_method=PUT" method="POST">
+        <label for="uname">Username</label>
+        <input type="text" id="uname" name="user" placeholder="username">
+        <label for="comment">Comment</label>
+        <input type="text" id="comment" name="comment" placeholder="comment">
+        <button>SUBMIT</button>
+    </form>
+    <h1>Comments! </h1>
+    <ul>
+    <% let i = 0; %>
+    <% for(let comment of data.comments) { %> 
+        <li>
+            <form action="/game/deletecomment?_method=PUT" method="POST">
+                User : <%=comment[0]%> <br> Post : <%= comment[1]%> 
+                <input type="hidden" name="commentID" value="<%= i %>">
+                <input type="hidden" name="gameID" value="<%= data._id %>">
+                <button>Delete</button> 
+            </form>
+        </li>
+    <% i++; %>
+    <% } %>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('partials/head')%>
+
+<%- include('partials/navbar')%>
+
+<div class="container bg-light">
+    <div class="row">
+        
+        <div class="column">
+    <form action="/game/edit?_method=PUT" method="POST">
+        <label for="uname">Game Title</label>
+        <input type="text" id="gTitle" name="gTitle" placeholder="<%=data.title%>" value="<%=data.title%>">
+        <br>
+       <label for="comment">Year</label>
+        <input type="text" id="gYear" name="gYear" placeholder="<%=data.year%>" value="<%=data.year%>">
+        <br>
+       <label for="comment">Score</label>
+        <input type="text" id="gScore" name="gScore" placeholder="<%=data.score%>" value="<%=data.score%>">
+        <br>
+       <label for="comment">Rating</label>
+        <input type="text" id="gRating" name="gRating" placeholder="<%=data.rating%>" value="<%=data.rating%>">
+        <br>
+       <label for="comment">Summary</label>
+        <input type="text" id="gSummary" name="gSummary" placeholder="<%=data.summary%>" value="<%=data.summary%>">
+        <br>
+       <label for="comment">Image</label>
+        <input type="text" id="gImage" name="gImage" placeholder="<%=data.image%>" value="<%=data.image%>">
+        <input type="hidden" id="gameID" name="gameID" value="<%=data._id%>">
+        <br>
+       <button>SUBMIT</button>
+    </form>
+</div>
+</div>
+</div>
+    <%- include('partials/footer')%>
+</body>
+</html>
